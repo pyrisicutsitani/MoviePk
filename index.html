@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MoviePk - Movies & Entertainment</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  background:#0b0b0f;
+  color:#fff;
+  font-family:Arial, sans-serif;
+}
+
+header{
+  background:#111116;
+  padding:18px 6%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  position:sticky;
+  top:0;
+  z-index:10;
+  border-bottom:1px solid #25252d;
+}
+
+.logo{
+  font-size:26px;
+  font-weight:bold;
+  color:#e50914;
+}
+
+nav a{
+  color:#fff;
+  text-decoration:none;
+  margin-left:20px;
+  font-size:15px;
+}
+
+nav a:hover{
+  color:#e50914;
+}
+
+.hero{
+  min-height:420px;
+  padding:80px 6%;
+  display:flex;
+  align-items:center;
+  background:
+  linear-gradient(90deg,#0b0b0f 20%,rgba(11,11,15,.75),rgba(11,11,15,.2)),
+  linear-gradient(135deg,#24242c,#101014);
+}
+
+.hero-content{
+  max-width:600px;
+}
+
+.hero h1{
+  font-size:48px;
+  margin-bottom:15px;
+}
+
+.hero p{
+  color:#ccc;
+  line-height:1.6;
+  margin-bottom:25px;
+}
+
+.btn{
+  display:inline-block;
+  padding:12px 22px;
+  border-radius:6px;
+  background:#e50914;
+  color:white;
+  text-decoration:none;
+  font-weight:bold;
+  border:none;
+  cursor:pointer;
+}
+
+.btn:hover{
+  background:#b20710;
+}
+
+.container{
+  padding:40px 6%;
+}
+
+.section-title{
+  font-size:25px;
+  margin-bottom:20px;
+}
+
+.search-box{
+  width:100%;
+  padding:14px;
+  margin-bottom:30px;
+  background:#18181e;
+  border:1px solid #33333b;
+  border-radius:7px;
+  color:white;
+  outline:none;
+}
+
+.movies{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+  gap:20px;
+}
+
+.movie{
+  background:#15151b;
+  border-radius:10px;
+  overflow:hidden;
+  transition:.3s;
+  border:1px solid #25252d;
+}
+
+.movie:hover{
+  transform:translateY(-5px);
+  border-color:#e50914;
+}
+
+.poster{
+  height:250px;
+  background:linear-gradient(135deg,#292932,#111116);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:50px;
+}
+
+.movie-info{
+  padding:15px;
+}
+
+.movie-info h3{
+  font-size:17px;
+  margin-bottom:8px;
+}
+
+.movie-info p{
+  color:#aaa;
+  font-size:13px;
+  margin-bottom:12px;
+}
+
+.rating{
+  color:#ffd700;
+  margin-bottom:12px;
+}
+
+.watch{
+  display:block;
+  text-align:center;
+  padding:9px;
+  background:#e50914;
+  color:white;
+  text-decoration:none;
+  border-radius:5px;
+  font-size:14px;
+}
+
+.categories{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-bottom:35px;
+}
+
+.category{
+  background:#191920;
+  border:1px solid #33333b;
+  padding:9px 16px;
+  border-radius:20px;
+  cursor:pointer;
+  color:#ddd;
+}
+
+.category:hover{
+  background:#e50914;
+  color:white;
+}
+
+footer{
+  margin-top:40px;
+  padding:30px 6%;
+  text-align:center;
+  background:#111116;
+  color:#888;
+  border-top:1px solid #25252d;
+}
+
+@media(max-width:600px){
+  nav{
+    display:none;
+  }
+
+  .hero{
+    min-height:350px;
+    padding:50px 6%;
+  }
+
+  .hero h1{
+    font-size:35px;
+  }
+
+  .movies{
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+  }
+
+  .poster{
+    height:200px;
+  }
+
+  .container{
+    padding:30px 5%;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">🎬 MoviePk</div>
+
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#movies">Movies</a>
+    <a href="#categories">Categories</a>
+  </nav>
+</header>
+
+<section class="hero" id="home">
+  <div class="hero-content">
+    <h1>Welcome to MoviePk</h1>
+    <p>
+      Discover movies, trailers, ratings and entertainment.
+      Find your next favorite movie in one place.
+    </p>
+    <a href="#movies" class="btn">Explore Movies</a>
+  </div>
+</section>
+
+<div class="container">
+
+  <h2 class="section-title">Search Movies 🔎</h2>
+
+  <input
+    type="text"
+    id="search"
+    class="search-box"
+    placeholder="Search for a movie..."
+    onkeyup="searchMovies()"
+  >
+
+  <h2 class="section-title" id="categories">Categories</h2>
+
+  <div class="categories">
+    <div class="category">Action</div>
+    <div class="category">Comedy</div>
+    <div class="category">Drama</div>
+    <div class="category">Adventure</div>
+    <div class="category">Animation</div>
+    <div class="category">Sci-Fi</div>
+  </div>
+
+  <h2 class="section-title" id="movies">Popular Movies 🎬</h2>
+
+  <div class="movies" id="movieList">
+
+    <div class="movie">
+      <div class="poster">🎬</div>
+      <div class="movie-info">
+        <h3>Movie One</h3>
+        <p>Action • 2026</p>
+        <div class="rating">★★★★★</div>
+        <a href="#" class="watch">Watch Trailer</a>
+      </div>
+    </div>
+
+    <div class="movie">
+      <div class="poster">🍿</div>
+      <div class="movie-info">
+        <h3>Movie Two</h3>
+        <p>Comedy • 2026</p>
+        <div class="rating">★★★★☆</div>
+        <a href="#" class="watch">Watch Trailer</a>
+      </div>
+    </div>
+
+    <div class="movie">
+      <div class="poster">🎥</div>
+      <div class="movie-info">
+        <h3>Movie Three</h3>
+        <p>Adventure • 2026</p>
+        <div class="rating">★★★★★</div>
+        <a href="#" class="watch">Watch Trailer</a>
+      </div>
+    </div>
+
+    <div class="movie">
+      <div class="poster">⭐</div>
+      <div class="movie-info">
+        <h3>Movie Four</h3>
+        <p>Drama • 2026</p>
+        <div class="rating">★★★★☆</div>
+        <a href="#" class="watch">Watch Trailer</a>
+      </div>
+    </div>
+
+    <div class="movie">
+      <div class="poster">🚀</div>
+      <div class="movie-info">
+        <h3>Movie Five</h3>
+        <p>Sci-Fi • 2026</p>
+        <div class="rating">★★★★★</div>
+        <a href="#" class="watch">Watch Trailer</a>
+      </div>
+    </div>
+
+    <div class="movie">
+      <div class="poster">😂</div>
+      <div class="movie-info">
+        <h3>Movie Six</h3>
+        <p>Comedy • 2026</p>
+        <div class="rating">★★★★☆</div>
+        <a href="#" class="watch">Watch Trailer</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 MoviePk. All Rights Reserved.</p>
+  <p style="margin-top:8px;">Entertainment & Movie Information Website</p>
+</footer>
+
+<script>
+function searchMovies(){
+
+  let input =
+    document.getElementById("search").value.toLowerCase();
+
+  let movies =
+    document.querySelectorAll(".movie");
+
+  movies.forEach(function(movie){
+
+    let title =
+      movie.querySelector("h3").innerText.toLowerCase();
+
+    if(title.includes(input)){
+      movie.style.display = "";
+    }else{
+      movie.style.display = "none";
+    }
+
+  });
+}
+</script>
+
+</body>
+</html>
